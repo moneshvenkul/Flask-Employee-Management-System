@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/37379129df.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="https://images.vexels.com/media/users/3/157564/isolated/preview/d7d05c7c1070e49a5385019c254901a6-simple-laptop-icon.png">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
+    {% block static %} {% endblock %}
+    <title id="pageTitle">{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-0 col-xl-2-sm-2 px-0 bg-success">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="{{url_for('views.home')}}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-3 d-none d-sm-inline" id="squadSync">Cognixia EMS</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item"  class="sidebarLink">
+                            <a href="{{url_for('views.dashboard', username=current_user.username)}}" class="nav-link align-middle text-white px-0">
+                                <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline" id="dashboardPageLink">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li  class="sidebarLink">
+                            <a href="{{url_for('views.employees', username=current_user.username)}}" class="nav-link px-0 text-white align-middle">
+                                <i class="fa-solid fa-users fa-sm"></i> <span class="ms-1 d-none d-sm-inline" id="employeePageLink">Employees</span></a>
+                        </li>
+
+                        <li  class="sidebarLink">
+                            <a href="{{url_for('views.positions', username=current_user.username)}}" class="nav-link px-0 text-white align-middle" id="positionsPageLink">
+                                <i class="fa-solid fa-briefcase"></i> <span class="ms-1 d-none d-sm-inline">Positions</span></a>
+                        </li>
+    
+                        <li  class="sidebarLink">
+                            <a href="{{url_for('views.departments', username=current_user.username)}}" class="nav-link px-0 text-white align-middle">
+                                <i class="fa-solid fa-sitemap fa-sm"></i> <span class="ms-1 d-none d-sm-inline" id="departmentsPageLink">Departments</span> </a>
+                        </li>
+
+                        <li  class="sidebarLink">
+                            <a href="{{url_for('views.calendar', username=current_user.username)}}" class="nav-link px-0 text-white align-middle">
+                                <i class="fa-solid fa-calendar-days"></i> </i> <span class="ms-1 d-none d-sm-inline" id="calendarPageLink">Calendar</span> </a>
+                        </li>
+                    </ul>
+
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://miro.medium.com/v2/resize:fit:500/1*xDIevNE7HEMiJQVTYg0qDQ.png" alt="hugenerd" width="40" height="40" class="rounded-circle">
+                            <div class="d-none d-sm-inline mx-1">{{sideBarName}}</div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

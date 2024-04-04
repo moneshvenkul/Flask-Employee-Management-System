@@ -1,0 +1,65 @@
+{% extends "auth/logged_out_base.html" %}
+
+{% block static %}<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/auth/login.css') }}">{% endblock %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <div  id="container">
+        <form action="#" method="POST" novalidate id="form">
+            {{ form.hidden_tag() }}
+            <h1 id="login">LOGIN</h1>
+
+            <div id="username">
+                {{form.username(placeholder='Username')}}
+            </div>
+
+            <!-- WTF error -->
+            {% for error in form.username.errors %}
+                <span style="color: red;" class="errorMessage">{{ error }}</span>
+            {% endfor %}
+
+            <!-- Username not found -->
+            {% with usernameErrors = get_flashed_messages(with_categories=true) %}  
+                {% for category, message in usernameErrors %}
+                    {% if category == 'usernameError' %}
+                        <span style="color: red;" class="errorMessage">{{ message }}</span>
+                    {% endif %}
+                {% endfor %}
+            {% endwith %}
+
+            <div id="password">
+                {{form.password(placeholder='Password')}} 
+            </div>
+            
+            <!-- WTF errors -->
+            {% for error in form.password.errors %}
+                <span style="color: red;" class="errorMessage">{{ error }}</span>
+            {% endfor %}
+
+            <!-- If the password is not found -->
+            {% with passwordErrors = get_flashed_messages(with_categories=true) %}
+                {% for category, message in passwordErrors %}
+                    {% if category == 'passwordError' %}
+                        <span style="color: red;" class="errorMessage">{{ message }}</span>
+                    {% endif %}
+                {% endfor %}
+            {% endwith %}
+            
+            <div>
+                <p id="rememberMe">{{ form.rememberMe() }} {{ form.rememberMe.label }}</p>
+            </div>
+
+            <div id="submitField">
+                {{ form.submit()}}
+            </div>
+
+        </form>
+
+        
+        <div id="photo">
+            <img src="{{ url_for('static',filename='images/loginImage.png') }}" alt="Teamwork Images" id="loginImage">
+        </div>
+
+    </div>
+{% endblock %}

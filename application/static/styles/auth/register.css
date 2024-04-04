@@ -1,0 +1,61 @@
+@import url('logged_out_base.css');
+@import url('login.css');
+
+#names{
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    align-items: center;
+}
+
+#firstNameInput{
+    border: 2px solid var(--mainColour);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-right: none;
+    width: 16vw;
+    padding: 2vh 0vw 2vh 1vw;
+    font-family: 'DM Sans', sans-serif;
+    width: 50%;
+}
+
+#lastNameInput{
+    border: 2px solid var(--mainColour);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: 16vw;
+    padding: 2vh 0vw 2vh 1vw;
+    font-family: 'DM Sans', sans-serif;
+    width: 50%;
+}
+
+#usernameInput{
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border: 2px solid var(--mainColour);
+    border-radius: 30px;
+    width: 16vw;
+    padding: 2vh 0vw 2vh 1vw;
+    font-family: 'DM Sans', sans-serif;
+}
+
+#passwordInput{
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border: 2px solid var(--mainColour);
+    border-radius: 30px;
+    width: 16vw;
+    padding: 2vh 0vw 2vh 1vw;
+    font-family: 'DM Sans', sans-serif;
+}
+
+#rememberMe{
+    color: var(--mainColour);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    margin-top: 1vh;
+}
+
+#registerImage{
+    height: 27vw; 
+}

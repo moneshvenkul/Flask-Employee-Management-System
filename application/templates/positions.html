@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Positions{% endblock %}
+
+{% block static %} 
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/positions.css') }}">
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script type="module" src="{{ url_for('static',filename='scripts/positions/positions-grid.js') }}" id="positions-grid" data-username="{{username}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='scripts/positions/positions-chart.js') }}" id="positions-chart" data-username="{{username}}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="mainContent">
+
+  <h1 id="title">Positions</h1>
+
+  <div class="tableContainer">
+    <div id="table"></div>
+  </div>
+
+  <div class="chartAndFromContainer">
+    <div class="formContainer">
+      <form action="", novalidate, id="form">
+        {{ form.hidden_tag() }}
+        
+        <div>
+          <h2 id="formTitle">Add Position</h2>
+        </div>
+  
+        <div class="titleDiv">
+          {{form.title(placeholder='Title')}}
+        </div>
+  
+        <div class="basePayDiv">
+          {{form.basePay(placeholder='Base Pay')}}
+        </div>
+  
+        <div class="descriptionDiv">
+          {{form.description(placeholder='Description')}}
+        </div>
+  
+        <div class="submitDiv">
+          {{form.submit()}}
+        </div>
+  
+      </form>
+    </div>
+  
+    <div class="chartsContainer">
+      <h2 id="chartTitle">Base Pay</h2>
+      <canvas id="myChart"></canvas>
+    </div>
+
+  </div>
+
+  <footer id="footer"><p>Cognixia EMS @2023</p></footer>
+
+</div>
+{% endblock %}

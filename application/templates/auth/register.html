@@ -1,0 +1,68 @@
+{% extends 'auth/logged_out_base.html' %}
+
+{% block static %}<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/auth/register.css') }}">{% endblock %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+    <div  id="container">
+        <form action="#" method="POST" novalidate id="form">
+            {{ form.hidden_tag() }}
+            <h1 id="login">REIGSTER</h1>
+
+            <div id="names">
+                {{form.firstName(placeholder='First Name')}}
+                {{form.lastName(placeholder='Last Name')}}
+            </div>
+
+            <!-- WTF errors for first and last name -->
+            {% if form.firstName.errors or form.lastName.errors %} <!--if firstname or lastname fields have errors-->
+                {% if form.firstName.errors|length > 0 and form.lastName.errors|length == 0%}   <!-- if only firstname has errors-->
+                    {% for error in form.firstName.errors %}  
+                        <span style="color: red;" class="errorMessage">{{ error }}</span>
+                    {% endfor %}
+                {% else %} <!-- if only lastname has errors-->
+                    {% for error in form.lastName.errors %}
+                        <span style="color: red;" class="errorMessage">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+
+            <div id="username">
+                {{form.username(placeholder='Username')}}
+            </div>
+            
+            <!-- WTF errors for username -->
+            {% for error in form.username.errors %}
+                <span style="color: red;" class="errorMessage">{{ error }}</span>
+            {% endfor %}
+
+            {% for message in get_flashed_messages() %}
+                <span style="color: red;" class="errorMessage">{{ message }}</span>
+            {% endfor %}
+
+            <div id="password">
+                {{form.password(placeholder='Password')}} 
+            </div>
+
+            <!-- WTF errors for password -->
+            {% for error in form.password.errors %}
+                <span style="color: red;" class="errorMessage">{{ error }}</span>
+            {% endfor %}
+
+            <div>
+                <p id="rememberMe">{{ form.rememberMe() }} {{ form.rememberMe.label }}</p>
+            </div>
+
+            <div id="submitField">
+                {{ form.submit()}}
+            </div>
+
+        </form>
+
+        <div id="photo">
+            <img src="{{ url_for('static',filename='images/registerImage.png') }}" alt="Teamwork Images" id="registerImage">
+        </div>
+
+    </div>
+{% endblock %}
